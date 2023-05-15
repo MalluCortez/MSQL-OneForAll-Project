@@ -4,8 +4,7 @@ CREATE DATABASE IF NOT EXISTS SpotifyClone;
 CREATE TABLE IF NOT EXISTS SpotifyClone.plan(
     plan_id INT PRIMARY KEY AUTO_INCREMENT,
     plan_type_name VARCHAR(45) NOT NULL,
-    plan_type_price DOUBLE NOT NULL,
-    PRIMARY KEY (plan_id)) 
+    plan_type_price DOUBLE NOT NULL)
   ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS SpotifyClone.users(
@@ -14,7 +13,6 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.users(
     user_age INT NOT NULL,    
     registration_date DATE NOT NULL,
     plan_id INT NOT NULL,
-    PRIMARY KEY (user_id),
     UNIQUE(user_id),
     FOREIGN KEY (plan_id) 
     REFERENCES plan (plan_id)) 
@@ -22,8 +20,7 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.users(
 
 CREATE TABLE IF NOT EXISTS SpotifyClone.artists (
     artist_id INT PRIMARY KEY AUTO_INCREMENT,
-    artist_name VARCHAR(45) NULL UNIQUE,
-    PRIMARY KEY (artist_id)) 
+    artist_name VARCHAR(45) NULL UNIQUE)
   ENGINE = InnoDB;
 
 
@@ -32,9 +29,8 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.albums(
     album_name VARCHAR(45) NOT NULL,
     artist_id INT NOT NULL,
     album_release_year INT NOT NULL,
-    PRIMARY KEY (album_id)
     FOREIGN KEY (artist_id) 
-    REFERENCES artist (artist_id)) 
+    REFERENCES artists (artist_id)) 
   ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS SpotifyClone.songs(
@@ -42,14 +38,13 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.songs(
     song_name VARCHAR(45) NULL,
     album_id INT NULL,
     song_duration SMALLINT(3) NULL,
-    PRIMARY KEY (song_id),
-    UNIQUE (song_name, album_id, artist_id)
+    UNIQUE (song_name, album_id),
     FOREIGN KEY (album_id) 
     REFERENCES albums (album_id))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS SpotifyClone.reproduction_history(
-  reproduction_id INT NOT NULL AUTO_INCREMENT
+  reproduction_id INT NOT NULL AUTO_INCREMENT,
 	user_id INT NOT NULL,
   song_id INT NOT NULL,
 	reproduction_date DATETIME NOT NULL,    
@@ -67,7 +62,7 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.followers(
 ENGINE = InnoDB;
 
 
-INSERT INTO SpotifyClone.plan (plan_type, plan_value) VALUES
+INSERT INTO SpotifyClone.plan (plan_type_name, plan_type_price) VALUES
 	('gratuito', 0),
 	('universitario', 5.99),
 	('pessoal', 6.99),
@@ -81,7 +76,7 @@ INSERT INTO SpotifyClone.artists (artist_name) VALUES
 	('Blind Guardian'),
 	('Nina Simone');
 
-INSERT INTO SpotifyClone.albums (artist_id, album_name, release_year) VALUES
+INSERT INTO SpotifyClone.albums (artist_id, album_name, album_release_year) VALUES
 ('1','Renaissance', '2022'),
 ('2','Jazz', '1978'),
 ('2','Hot Space', '1982'),
@@ -148,4 +143,3 @@ INSERT INTO SpotifyClone.followers (user_id, artist_id) VALUES
 	('7', '6'),
 	('9', '3'),
 	('10', '2');
-  
