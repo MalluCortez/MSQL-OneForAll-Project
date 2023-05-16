@@ -1,6 +1,6 @@
 {
   "tabela_pessoas_usuarias": "users",
-  "coluna_pessoas_usuarias": "users_id",
+  "coluna_pessoas_usuarias": "user_id",
   "tabela_plano": "plan",
   "coluna_plano": "plan_id",
   "tabela_historico_de_reproducoes": "reproduction_history",
@@ -10,7 +10,7 @@
   "tabela_artista": "artists",
   "coluna_artista": "artist_id",
   "tabela_album": "albums",
-  "coluna_album": "albums_id",
+  "coluna_album": "album_id",
   "tabela_cancoes": "songs",
-  "coluna_cancoes": "songs_id"
+  "coluna_cancoes": "song_id"
 }
