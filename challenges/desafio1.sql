@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.artists (
 
 CREATE TABLE IF NOT EXISTS SpotifyClone.albums(
 	  album_id INT PRIMARY KEY AUTO_INCREMENT,
-    album_name VARCHAR(45) NOT NULL,
     artist_id INT NOT NULL,
+    album_name VARCHAR(45) NOT NULL,
     album_release_year INT NOT NULL,
     FOREIGN KEY (artist_id) 
     REFERENCES artists (artist_id)) 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.reproduction_history(
 	user_id INT NOT NULL,
   song_id INT NOT NULL,
 	reproduction_date DATETIME NOT NULL,    
-  PRIMARY KEY (reproduction_id, user_id, song_id),
+  PRIMARY KEY (user_id, song_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (song_id) REFERENCES songs (song_id))
 ENGINE = InnoDB;
@@ -60,7 +60,6 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.followers(
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (artist_id) REFERENCES artists (artist_id))
 ENGINE = InnoDB;
-
 
 INSERT INTO SpotifyClone.plan (plan_type_name, plan_type_price) VALUES
 	('gratuito', 0),
@@ -117,11 +116,11 @@ INSERT INTO SpotifyClone.reproduction_history (user_id, song_id, reproduction_da
 	('2', '10', '2022-08-05 08:05:17'),
 	('2', '7', '2020-01-02 07:40:33'),
 	('3', '10', '2020-11-13 16:55:13'),
-	('3', '3', '2020-12-05 18:38:30'),
+	('3', '2', '2020-12-05 18:38:30'),
 	('4', '8', '2021-08-15 17:10:10'),
 	('5', '8', '2022-01-09 01:44:33'),
 	('5', '5', '2020-08-06 15:23:43'),
-	('6', '7', '2017-01-24 00:31:17 '),
+	('6', '7', '2017-01-24 00:31:17'),
 	('6', '1', '2017-10-12 12:35:20'),
 	('7', '4', '2011-12-15 22:30:49'),
 	('8', '4', '2012-03-17 14:56:41'),
